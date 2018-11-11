@@ -23,7 +23,10 @@ if (command === 'do-what-it-says') {
         console.log(command);
         query = dataSplit[1];
         console.log(query);
+        searchthis();
     });
+} else {
+    searchthis();
 }
 function concertthis() {
     console.log("Searching for Concerts...");
@@ -97,6 +100,4 @@ function searchthis() {
         moviethis();
     }
 };
-
-searchthis();
 
