@@ -27,7 +27,7 @@ if (command === 'do-what-it-says') {
     });
 } else {
     searchthis();
-}
+};
 
 function concertthis() {
     if (query === ""){
@@ -55,7 +55,7 @@ function concertthis() {
             console.log('\n-------------');
         }
     });
-}
+};
 function spotifythis() {
     if (query === ""){
         query = 'Hotel California';
@@ -79,7 +79,7 @@ function spotifythis() {
         console.log('Spotify Link to Song: ' + songLink);
         console.log('\n-------------\n');
     });
-}
+};
 function moviethis() {
     if (query === ""){
         query = 'Mr. Nobody';
@@ -113,7 +113,8 @@ function moviethis() {
         console.log('Plot: ' + moviePlot);
         console.log('\n-------------\n');
     });
-}
+};
+
 function searchthis() {
     if (command === 'concert-this') {
         concertthis();
