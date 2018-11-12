@@ -28,6 +28,7 @@ if (command === 'do-what-it-says') {
 } else {
     searchthis();
 }
+
 function concertthis() {
     console.log("Searching for Concerts...");
     request("https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp", function (error, response, body) {
@@ -35,19 +36,22 @@ function concertthis() {
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         var body = JSON.parse(body);
         for (var i = 0; i < 3; i++) {
-            console.log('Coming Up...')
+            console.log('-------------');
             var concert = body[i];
             var venueInfo = concert.venue;
 
             var venueName = venueInfo.name;
             var location = venueInfo.city + ", " + venueInfo.region;
             var date = concert.datetime;
+            var newDate = moment(date).format('LL')
 
-            console.log(venueName, location, date);
+            console.log('Name of Venue: ' + venueName);
+            console.log('Location: ' + location);
+            console.log('Date: ' + newDate);
+            console.log('-------------');
         }
     });
 }
-
 function spotifythis() {
     console.log("Searching for Song...");
     spotify.search({ type: 'track', query: query }, function (err, data) {
@@ -61,10 +65,14 @@ function spotifythis() {
         var songLink = spotifyObj.external_urls.spotify;
         var songAlbum = spotifyObj.album.name;
 
-        console.log(songArtistName, songName, songLink, songAlbum);
+        console.log('-------------');
+        console.log('Name of song: ' + songName);
+        console.log('Artist: ' + songArtistName);
+        console.log('Name of Album: ' + songAlbum);
+        console.log('Spotify Link to Song: ' + songLink);
+        console.log('-------------');
     });
 }
-
 function moviethis() {
     console.log("Searching for Movie...");
     var apikey = 'trilogy';
@@ -73,6 +81,7 @@ function moviethis() {
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         var body = JSON.parse(body);
         var movieObj = body;
+
         var movieTitle = movieObj.Title;
         var movieYear = movieObj.Year;
         var movieImdbRatingSor = movieObj.Ratings[0].Source;
@@ -83,8 +92,16 @@ function moviethis() {
         var movieLanguage = movieObj.Language;
         var moviePlot = movieObj.Plot;
         var movieActors = movieObj.Actors;
-
-        console.log(movieTitle, movieYear, movieImdbRatingVal, movieRottenTRatingVal, movieCountry, movieLanguage, moviePlot, movieActors)
+        console.log('-------------');
+        console.log('Movie Title: ' + movieTitle);
+        console.log('Year: ' + movieYear);
+        console.log('Starring: ' + movieActors);
+        console.log('Country: ' + movieCountry);
+        console.log('Language: ' + movieLanguage);
+        console.log(movieImdbRatingSor + ": " + movieImdbRatingVal);
+        console.log(movieRottenTRatingSor + ": " + movieRottenTRatingVal);
+        console.log('Plot: ' + moviePlot);
+        console.log('-------------');
     });
 }
 function searchthis() {
