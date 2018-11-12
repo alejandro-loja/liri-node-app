@@ -17,9 +17,34 @@ This application uses *IMDB*, *Spotify*, and *Bands In Town* **APIs** to return 
 
 *If no search term is typed, then a default query will incur.*
 
-**Image of concert-this with default query**
+See Examples Below:
 
+**Entering Nonsense into LIRI**
+![Image of LIRI with random letters](images/liri-nonsense.png)
+
+**do-what-it-says**
+![Image of concert-this with default query](images/liri-dothis.png)
+
+<hr>
+
+**concert-this with default query**
 ![Image of concert-this with default query](images/liri-concertthis-default.png)
+**concert-this**
+![Image of concert-this](images/liri-concertthis.png)
+
+<hr>
+
+**spotify-this-song with default query**
+![Image of spotify-this-song with default query](images/liri-spotifysong-default.png)
+**spotify-this-song**
+![Image of spotify-this-song](images/liri-spotifysong.png)
+
+<hr>
+
+**movie-this with default query**
+![Image of movie-this with default query](images/liri-moviethisdefault.png)
+**movie-this**
+![Image of movie-this](images/liri-moviethis.png)
 
 
 
