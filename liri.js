@@ -12,7 +12,7 @@ var command = process.argv[2];
 var query = process.argv.slice(3).join(" ");
 
 if (command === 'do-what-it-says') {
-    console.log("loading");
+    console.log("\nloading");
     fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
             console.log(err);
@@ -30,13 +30,17 @@ if (command === 'do-what-it-says') {
 }
 
 function concertthis() {
-    console.log("Searching for Concerts...");
+    if (query === ""){
+        query = 'Metallica';
+    }
+    console.log("\nSearching for Concerts...");
     request("https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp", function (error, response, body) {
         // console.log('error:', error); // Print the error if one occurred
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         var body = JSON.parse(body);
+        console.log('\nConcerts for ' + query);
         for (var i = 0; i < 3; i++) {
-            console.log('-------------');
+            console.log('\n-------------\n');
             var concert = body[i];
             var venueInfo = concert.venue;
 
@@ -48,12 +52,15 @@ function concertthis() {
             console.log('Name of Venue: ' + venueName);
             console.log('Location: ' + location);
             console.log('Date: ' + newDate);
-            console.log('-------------');
+            console.log('\n-------------');
         }
     });
 }
 function spotifythis() {
-    console.log("Searching for Song...");
+    if (query === ""){
+        query = 'Hotel California';
+    }
+    console.log("\nSearching for Song...");
     spotify.search({ type: 'track', query: query }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
@@ -65,16 +72,19 @@ function spotifythis() {
         var songLink = spotifyObj.external_urls.spotify;
         var songAlbum = spotifyObj.album.name;
 
-        console.log('-------------');
+        console.log('\n-------------\n');
         console.log('Name of song: ' + songName);
         console.log('Artist: ' + songArtistName);
         console.log('Name of Album: ' + songAlbum);
         console.log('Spotify Link to Song: ' + songLink);
-        console.log('-------------');
+        console.log('\n-------------\n');
     });
 }
 function moviethis() {
-    console.log("Searching for Movie...");
+    if (query === ""){
+        query = 'Mr. Nobody';
+    }
+    console.log("\nSearching for Movie...");
     var apikey = 'trilogy';
     request("http://www.omdbapi.com/?apikey=" + apikey + "&t=" + query, function (error, response, body) {
         // console.log('error:', error); // Print the error if one occurred
@@ -92,7 +102,7 @@ function moviethis() {
         var movieLanguage = movieObj.Language;
         var moviePlot = movieObj.Plot;
         var movieActors = movieObj.Actors;
-        console.log('-------------');
+        console.log('\n-------------\n');
         console.log('Movie Title: ' + movieTitle);
         console.log('Year: ' + movieYear);
         console.log('Starring: ' + movieActors);
@@ -101,20 +111,21 @@ function moviethis() {
         console.log(movieImdbRatingSor + ": " + movieImdbRatingVal);
         console.log(movieRottenTRatingSor + ": " + movieRottenTRatingVal);
         console.log('Plot: ' + moviePlot);
-        console.log('-------------');
+        console.log('\n-------------\n');
     });
 }
 function searchthis() {
     if (command === 'concert-this') {
         concertthis();
-    };
-
-    if (command === 'spotify-this-song') {
+    }
+    else if (command === 'spotify-this-song') {
         spotifythis();
     }
-
-    if (command === 'movie-this') {
+    else if (command === 'movie-this') {
         moviethis();
+    }
+    else {
+        console.log('\nPlease enter a command after "liri.js" such as: \nconcert-this, spotify-this-song, movie-this,  do-what-it-says\n');
     }
 };
 
